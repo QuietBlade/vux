@@ -4,31 +4,30 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
-import Home from './components/HelloFromVux'
+import store from './store'
 import router from './router/index.js'
-import { AjaxPlugin } from 'vux'
+import { AjaxPlugin,Group,GroupTitle } from 'vux'
 
-import headerNav from './views/header.vue'
+
+// 函数入口
+import './function/index'
+
+// 全局组件
 
 Vue.use(AjaxPlugin)
 Vue.use(VueRouter)
+Vue.component('group',Group)
+Vue.component('group-title',GroupTitle)
 
-Vue.component('header-nav',headerNav)
-// const routes = [{
-//   path: '/',
-//   component: Home
-// }]
-
-// const router = new VueRouter({
-//   routes
-// })
 
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  store //添加存储
 }).$mount('#app-box')

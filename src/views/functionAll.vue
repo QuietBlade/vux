@@ -2,13 +2,13 @@
   <div>
 	<group-title>样品</group-title>
     <grid :cols="cols" >
-      <grid-item label="Grid" v-for="menus in menu">
+      <grid-item label="Grid" v-for="menus in menu" :key="menus.label">
         <img slot="icon" src="../assets/icon/icon_nav_button.png" :label="menus.label">
       </grid-item>
     </grid>
 	<group-title>企业</group-title>
 	<grid :cols="cols" >
-	  <grid-item label="Grid" v-for="menus in menu">
+	  <grid-item label="Grid" v-for="menus in menu" :key="menus.label">
 	    <img slot="icon" src="../assets/icon/icon_nav_button.png" :label="menus.label">
 	  </grid-item>
 	</grid>

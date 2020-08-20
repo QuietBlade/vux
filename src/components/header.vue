@@ -12,7 +12,6 @@
 		data() {
 			return {
 				ShowNav: true,
-				//showBack: true,
 			}
 		},
 		props: ['title','isShowBack'],
