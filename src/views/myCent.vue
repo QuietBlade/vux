@@ -47,15 +47,11 @@
 			},
 		},
 		created(){
-			this.userModel = this.$store.state.userModel
-			this.userModel.phone = '15555555555'
-
-			// console.log(this.$store.state.userModel)
-			
 			// this.userModel = this.$store.state.userModel
-			// this.$set(this.userModel,'phone','15555555555')
-			//this.msg = "123"
-			// console.log(typeof this.$store.state.userModel)
+			// this.userModel.phone = '15555555555'
+			api.getAccount({openid : 'test'}).then( response => {
+					this.userModel = response.data
+				})
 			
 		},
 		components: {

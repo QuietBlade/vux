@@ -16,6 +16,7 @@ import Tabbar from '@/components/tabbar.vue'
 import headerNav from '@/components/header.vue'
 import { Loading } from 'vux'
 import { mapState } from 'vuex'
+import api from './axios/api'
 
 export default {
   components: {
@@ -29,13 +30,9 @@ export default {
   },
   created(){
 	  this.isShowBack = false
-	//   this.account.getUserAccount('123').then( res => {
-	// 	  // console.log(typeof res.data)
-	// 	  console.log(this.$store.state)
-	// 	  this.$store.state.userModel = res.data
-	//   }).catch( error => {
-	// 	  console.log(error)
-	//   })
+	  api.getAccount({openid : "openid"}).then( res => {
+		  this.$store.state.userModel = res.data
+	  })
   },
   computed:{
 

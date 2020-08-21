@@ -1,7 +1,10 @@
 import axios from 'axios';
 import router from '../router/index';
 import store from '../store/index';
-import { Toast } from 'vux';
+import { ToastPlugin } from 'vux';
+import Vue from 'vue'
+
+Vue.use(ToastPlugin)
 
 var AUTH_TOKEN = ''
 
@@ -9,8 +12,13 @@ const instance = axios.create({
   timeout: 30000, // 请求超时时间
 })
 
-function msg(message){
-  console.log(Toast)
+function toast(message){
+  Vue.$vux.toast.show({
+    time: 2000,
+    type: 'text',
+    text: message,
+    position: 'bottom',
+  })
 }
 
 instance.defaults.timeout = 10000;
@@ -20,10 +28,9 @@ instance.defaults.headers.common['token'] = AUTH_TOKEN;
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   if( !config.headers.common.token ){
-    //console.log('token不存在')
-    msg("test")
+    toast("token不存在")
+    // router.push("/");
   }
-    
 
   return config;
 }, function (error) {
