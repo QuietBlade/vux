@@ -2,14 +2,17 @@
 	<div>
 		<group>
 			<cell title="我的账户">
-				<span class="vertical-middle" >  </span>
+				<img slot="icon" width="30" style="display:block;margin-right:5px;" :src="userModel.headimgurl">
+				<span class="vertical-middle" > {{userModel.nickname}} </span>
 			</cell>
 			<cell title="余额" value="0.01"></cell>
-			<cell is-link link="/api/modifyPhone" :value="userModel.phone" title="电话号码" >
-				<badge v-if="userModel.phone.length == 0"></badge>
+			<cell title="电话号码" >
+				<x-button v-if="!userModel.phone" mini type="primary" @click.native="bindPhone()"> 绑定手机 </x-button>
+				<span v-else> {{ userModel.phone }}</span>
 			</cell>
 			<cell is-link link="/api/modifyPassword" title="修改密码"> </cell>
-			<button  @click="test()"> 测试 </button>
+			<x-button type="primary" @click.native="bindPhone()">点击事件</x-button>
+			<cell title="msg"> {{msg}}</cell>
 		</group>
 	</div>
 	
@@ -17,34 +20,46 @@
 
 <script>
 	import {
-		XInput,Cell,Badge
+		XInput,Cell,Badge,XButton
 	} from 'vux'
 	
+	import { Toast  } from "vux";
+	import api from '../axios/api.js'
+
 	export default {
 		data() {
 			return {
 				msg: 'Hello,world',
 				userModel: {
-					'phone': '',
-					'verycode': '',
-					'wxopenID': '',
+					openid : "",
+					phone: "",
+					headimgurl : "",
+					nickname : "",
 				}
 			}
-
 		},
 		methods:{
-			test(){
-				// this.$store.commit('increment')
-				console.log(this.account.getUserAccount());
-				// console.log(this.$store.state)
-			}
-			
+			bindPhone(){
+				// this.$set(this.userModel,'phone','15555555555')
+				api.getAccount({openid : 'test'}).then( response => {
+					console.log(response.data)
+				})
+			},
 		},
 		created(){
-			//this.userModel = ;
+			this.userModel = this.$store.state.userModel
+			this.userModel.phone = '15555555555'
+
+			// console.log(this.$store.state.userModel)
+			
+			// this.userModel = this.$store.state.userModel
+			// this.$set(this.userModel,'phone','15555555555')
+			//this.msg = "123"
+			// console.log(typeof this.$store.state.userModel)
+			
 		},
 		components: {
-			XInput,Cell,Badge
+			XInput,Cell,Badge,XButton,Toast
 		}
 	}
 </script>

@@ -9,8 +9,8 @@ import router from './router/index.js'
 import { AjaxPlugin,Group,GroupTitle } from 'vux'
 
 
-// 函数入口
-import './function/index'
+// http请求入口
+// import './axios/index'
 
 // 全局组件
 
