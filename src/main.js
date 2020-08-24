@@ -6,8 +6,7 @@ import VueRouter from 'vue-router'
 import App from './App'
 import store from './store'
 import router from './router/index.js'
-import { AjaxPlugin,Group,GroupTitle } from 'vux'
-
+import { AjaxPlugin,Group,GroupTitle,Icon,ToastPlugin } from 'vux'
 
 // http请求入口
 // import './axios/index'
@@ -16,7 +15,9 @@ import { AjaxPlugin,Group,GroupTitle } from 'vux'
 
 Vue.use(AjaxPlugin)
 Vue.use(VueRouter)
+Vue.use(ToastPlugin)
 Vue.component('group',Group)
+Vue.component('icon', Icon)
 Vue.component('group-title',GroupTitle)
 
 

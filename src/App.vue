@@ -1,10 +1,10 @@
 <template>
-	<div id="app">
+	<div id="app" >
 		<loading v-model="isLoading"></loading>
 		<header-nav :title="this.$route.name" :isShowBack="isShowBack"></header-nav>
 		<div class="weui_tab">
 			<div class="weui_tab_bd">
-				<router-view></router-view>
+				<router-view style="margin: 10px;"></router-view>
 			</div>
 		</div>
 		<tabbar></tabbar>
@@ -20,7 +20,7 @@ import api from './axios/api'
 
 export default {
   components: {
-	Tabbar,headerNav,Loading
+	Tabbar,headerNav,Loading,api
   },
   data(){
 	  return{
@@ -33,6 +33,7 @@ export default {
 	  api.getAccount({openid : "openid"}).then( res => {
 		  this.$store.state.userModel = res.data
 	  })
+	  console.log("App.vue")
   },
   computed:{
 
