@@ -31,16 +31,20 @@ const routes = [{
 
 const router = new Router({
 	routes // (缩写) 相当于 routes: routes
-
 })
 
 router.beforeEach(function (to, from, next) {
-	store.commit('updateLoadingStatus', {isLoading: true})
-	next()
+	// store.commit('updateLoadingStatus', {isLoading: true})
+	// console.log(store.state)
+	if( to.path != '/myCent' )
+		if ( to.meta.token == undefined ){
+			// router.push("/myCent")
+		}
+ 	next()
 })
 
 router.afterEach(function (to) {
-	store.commit('updateLoadingStatus', {isLoading: false})
-  })
+	// store.commit('updateLoadingStatus', {isLoading: false})
+})
 
 export default router

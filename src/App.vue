@@ -29,17 +29,24 @@ export default {
 	  }
   },
   created(){
-	  this.isShowBack = false
-	  api.getAccount({openid : "openid"}).then( res => {
-		  this.$store.state.userModel = res.data
-	  })
-	  console.log("App.vue")
+	this.isShowBack = false
+	
+	if(window.location.search == ""){
+		api.getAccountCode()
+	}else{
+		let _res = api.urlToObj(window.location.search)
+		api.getAccountOpenid(_res.code).then( res => {
+			let res_json = JSON.parse(res.request.response)
+			console.log(res_json)
+		})
+	}
+
   },
   computed:{
 
   },
   watch:{
-	  //监听路由，首页不显示返回按钮
+	//监听路由，首页不显示返回按钮
 	$route(to,from){
 		switch(to.path){
 			case '/':
